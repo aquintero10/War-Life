@@ -6,4 +6,4 @@ Fuentes de WebServices
 
 # Sitio Web
 
-  aqu321-001-site1.ftempurl.com
+  http://aqu321-001-site1.ftempurl.com
