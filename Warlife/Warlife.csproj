@@ -67,9 +67,14 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Game\main.js" />
+    <Content Include="Game\Principal.html" />
+    <Content Include="index.html" />
+    <Content Include="Main.html" />
     <Content Include="Pagina_proyecto\css\animate.css" />
     <Content Include="Pagina_proyecto\css\bootstrap.min.css" />
     <Content Include="Pagina_proyecto\css\font-awesome.min.css" />
+    <Content Include="Pagina_proyecto\css\Pro.css" />
     <Content Include="Pagina_proyecto\css\templatemo_misc.css" />
     <Content Include="Pagina_proyecto\css\templatemo_style.css" />
     <Content Include="Pagina_proyecto\fonts\fontawesome-webfont.svg" />
@@ -106,10 +111,12 @@
     <Content Include="Pagina_proyecto\images\templatemo_logo.jpg" />
     <Content Include="Pagina_proyecto\images\templatemo_teamhexa.png" />
     <Content Include="Pagina_proyecto\images\templatemo_teamhexa_hover.png" />
-    <Content Include="Pagina_proyecto\index.html" />
+    <Content Include="Pagina_proyecto\js\alert.js" />
     <Content Include="Pagina_proyecto\js\jquery-1.10.2.min.js" />
     <Content Include="Pagina_proyecto\js\jquery.lightbox.js" />
+    <Content Include="Pagina_proyecto\js\phaser.js" />
     <Content Include="Pagina_proyecto\js\templatemo_custom.js" />
+    <Content Include="Pagina_proyecto\js\widgster.js" />
     <Content Include="Principal.svc" />
     <Content Include="Web.config" />
     <Content Include="wsWarLife.asmx" />
@@ -140,6 +147,7 @@
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Res\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
