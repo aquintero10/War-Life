@@ -1,6 +1,6 @@
 C:\Users\MAUQUI\Source\Workspaces\WarLife\Warlife\Warlife\bin\Warlife.dll.config
 C:\Users\MAUQUI\Source\Workspaces\WarLife\Warlife\Warlife\bin\Warlife.dll
 C:\Users\MAUQUI\Source\Workspaces\WarLife\Warlife\Warlife\bin\Warlife.pdb
-C:\Users\MAUQUI\Source\Workspaces\WarLife\Warlife\Warlife\obj\Release\Warlife.csprojResolveAssemblyReference.cache
 C:\Users\MAUQUI\Source\Workspaces\WarLife\Warlife\Warlife\obj\Release\Warlife.dll
 C:\Users\MAUQUI\Source\Workspaces\WarLife\Warlife\Warlife\obj\Release\Warlife.pdb
+C:\Users\MAUQUI\Source\Workspaces\WarLife\Warlife\Warlife\obj\Release\Warlife.csprojResolveAssemblyReference.cache
