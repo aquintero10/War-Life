@@ -63,42 +63,6 @@ namespace Warlife.wsObjects
         }
 
         /// <summary>
-        /// Execute a single command in the database
-        /// </summary>
-        /// <param name="sSql">Sql sentence</param>
-        /// <param name="sErrMess">Error message if exists</param>
-        /// <returns>True if is succesfull</returns>
-        /// 
-        public bool ExecuteSql(string sSql, out string sErrMess)
-        {
-            sErrMess = "";
-            try
-            {
-                SqlConnection sqlConn;
-                SqlCommand sqlComm;
-                sqlConn = new SqlConnection(sConnStr);
-                sqlComm = new SqlCommand();
-                sqlComm.Connection = sqlConn;
-                sqlComm.CommandText = sSql;
-                try
-                {
-                    sqlConn.Open();
-                    sqlComm.ExecuteNonQuery();
-                }
-                finally
-                {
-                    sqlConn.Close();
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                sErrMess = "ERSQL00002" + ex.Message;
-                return false;
-            }
-        }
-
-        /// <summary>
         /// Methot that execute the SQL string
         /// </summary>
         /// <param name="sqlComm"></param>
@@ -132,6 +96,7 @@ namespace Warlife.wsObjects
             }
         }
 
+
         #endregion
     }
     #endregion
@@ -154,6 +119,7 @@ namespace Warlife.wsObjects
         #endregion
 
     }
+
     #endregion
 
     #region User
@@ -176,11 +142,12 @@ namespace Warlife.wsObjects
 
                 SqlCommand sqlComm = new SqlCommand();
 
-                SqlParameter[] aParams = new SqlParameter[2];
+                SqlParameter[] aParams = new SqlParameter[3];
 
                 aParams[0] = new SqlParameter("@sUserName", utils.ConvertIfNull(sUserName));
                 aParams[1] = new SqlParameter("@sPassword", utils.ConvertIfNull(sPassword));
-                aParams[2] = new SqlParameter("@dtCreationDate", utils.ConvertIfNull(dtCreationDate));
+                aParams[2] = new SqlParameter("@dtCreationDate", SqlDbType.DateTime);
+                aParams[2].Value = utils.ConvertIfNull(dtCreationDate);
 
                 string sSql;
 
@@ -198,6 +165,52 @@ namespace Warlife.wsObjects
 
 
 
+        }
+
+        public bool LogIn(string sUserName, string sPassword, out string sResponseMessage)
+        {
+            DataSet dsDatos = new DataSet();
+
+            DataBase DataBase = new DataBase();
+
+            DataTable dt = new DataTable();
+
+            Utils utils = new Utils();
+
+            SqlConnection sqlConn = new SqlConnection(DataBase.sConnStr);
+
+            SqlCommand command = new SqlCommand("LoginUser", sqlConn);
+
+            command.CommandType = CommandType.StoredProcedure;
+
+            command.Parameters.Add(new SqlParameter("@username", sUserName));
+            command.Parameters.Add(new SqlParameter("@password", sPassword));
+
+            SqlDataAdapter sqlAdapter = new SqlDataAdapter(command);
+            
+            try
+            {
+
+                sqlAdapter.Fill(dt);
+
+                if (dt.Rows[0][0].ToString() == "True")
+                {
+                    sResponseMessage = "Success";
+                    return true;
+                }
+                else
+                {
+                    sResponseMessage = "Failed";
+                    return true;
+                }
+
+            }
+            catch (Exception e)
+            {
+                sResponseMessage = e.Message;
+                
+                return false;
+            }
         }
 
         #endregion

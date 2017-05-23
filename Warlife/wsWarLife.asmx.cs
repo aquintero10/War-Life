@@ -18,14 +18,27 @@ namespace Warlife
     public class wsWarLife : System.Web.Services.WebService
     {
 
-        [WebMethod]
-        public string SetNewUser(string sUserName, string sPassword, DateTime dtCreationDate, out string sResponseMessage)
+        [WebMethod]        
+        public string SetNewUser(string sUserName , string sPassword)
         {
-            sResponseMessage = "";
+            string sResponseMessage = "";
             wsObjects.User wUser = new wsObjects.User();
+            DateTime dtCreationDate = new DateTime();
+            dtCreationDate = DateTime.Now;
             wUser.SetNewUser(sUserName, sPassword, dtCreationDate, out sResponseMessage);
             return sResponseMessage;
+
         }
 
+        [WebMethod]
+        public string LogIn(string sUserName, string sPassword)
+        {
+            string sResponseMessage = "";
+            wsObjects.User wUser = new wsObjects.User();
+            wUser.LogIn(sUserName, sPassword, out sResponseMessage);
+            return sResponseMessage;
+        }
+  
+            
     }
 }
