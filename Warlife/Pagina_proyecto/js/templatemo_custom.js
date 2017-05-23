@@ -14,6 +14,7 @@ jQuery(document).ready(function($){
 		return false;
 	});
 
+
 	$( window ).load(function() {
 	  $("#menu-container .products").hide();
 	});
@@ -26,6 +27,7 @@ jQuery(document).ready(function($){
 		$(".main_menu a.templatemo_page2, .responsive_menu a.templatemo_page2").removeClass('active');
 		$(".main_menu a.templatemo_page3, .responsive_menu a.templatemo_page3").removeClass('active');
 		$(".main_menu a.templatemo_page5, .responsive_menu a.templatemo_page5").removeClass('active');
+		$(".main_menu a.templatemo_page4").removeClass('active');
 		return false;
 	});
 
@@ -35,6 +37,7 @@ jQuery(document).ready(function($){
 		$(".main_menu a.templatemo_home, .responsive_menu a.templatemo_home").removeClass('active');
 		$(".main_menu a.templatemo_page3, .responsive_menu a.templatemo_page3").removeClass('active');
 		$(".main_menu a.templatemo_page5, .responsive_menu a.templatemo_page5").removeClass('active');
+		$(".main_menu a.templatemo_page4").removeClass('active');
 		return false;
 	});
 
@@ -45,15 +48,32 @@ jQuery(document).ready(function($){
 		$(".main_menu a.templatemo_page2, .responsive_menu a.templatemo_page2").removeClass('active');
 		$(".main_menu a.templatemo_home, .responsive_menu a.templatemo_home").removeClass('active');
 		$(".main_menu a.templatemo_page5, .responsive_menu a.templatemo_page5").removeClass('active');
+		$(".main_menu a.templatemo_page4").removeClass('active');
 		return false;
 	});
+
+
+	$(".main_menu a.templatemo_page4").click(function () {
+	    $("#menu-container .datos").addClass("animated fadeInDown").show();
+	    $(this).addClass('active');
+	    $(".main_menu a.templatemo_page2, .responsive_menu a.templatemo_page2").removeClass('active');
+	    $(".main_menu a.templatemo_page3, .responsive_menu a.templatemo_page3").removeClass('active');
+	    $(".main_menu a.templatemo_home, .responsive_menu a.templatemo_home").removeClass('active');
+	    $(".main_menu a.templatemo_page5, .responsive_menu a.templatemo_page5").removeClass('active');
+
+	    return false;
+	});
+
+
 
 	$(".main_menu a.templatemo_page5, .responsive_menu a.templatemo_page5").click(function(){
 		$("#menu-container .contact").addClass("animated fadeInDown").show();
 		$(this).addClass('active');
 		$(".main_menu a.templatemo_page2, .responsive_menu a.templatemo_page2").removeClass('active');
 		$(".main_menu a.templatemo_page3, .responsive_menu a.templatemo_page3").removeClass('active');
+		$("a.templatemo_page4").removeClass('active');
 		$(".main_menu a.templatemo_home, .responsive_menu a.templatemo_home").removeClass('active');
+
 		
 		loadScript();
 		return false;

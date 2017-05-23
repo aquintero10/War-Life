@@ -356,12 +356,12 @@
                         <h6>Ingrese su usario y contraña en los siguientes campos</h6>
                         <form role="form">
                             <div class="templatemo_form">
-                                <input name="fullname" type="text" class="form-control" id="fullname" placeholder="Usuario" maxlength="40">
+                                <input name="fullname" type="text" class="form-control" id="loginUser" placeholder="Usuario" maxlength="40">
                             </div>
                             <div class="templatemo_form">
-                                <input name="subject" type="text" class="form-control" id="subject" placeholder="Clave" maxlength="40">
+                                <input name="subject" type="password" class="form-control" id="loginPassword" placeholder="Clave" maxlength="40">
                             </div>
-                            <div class="templatemo_form"><button type="button" class="btn btn-primary">Ingresar</button></div>
+                            <div class="templatemo_form"><button type="button" id="btnLogIn"  class="btn btn-primary">Ingresar</button></div>
                         </form>
                     </div>
 
@@ -388,10 +388,35 @@
                                 <input name="fullname" type="text" class="form-control" id="user" placeholder="Usuario" maxlength="40">
                             </div>
                             <div class="templatemo_form">
-                                <input name="email" type="password" class="form-control" id="clave" placeholder="Contraseña" maxlength="40">
-                            </div>  
+                                <input name="clave" type="password" class="form-control" id="clave" placeholder="Contraseña" maxlength="40">
+                            </div>
                             <div class="templatemo_form"><button type="button" id="btnRegistrar" class="btn btn-primary">Registrar</button></div>
                         </form>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="clear"></div>
+
+        <div class="content datos" id="menu-4">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-5">
+                        <h2>Politica de Uso de datos</h2>
+                        <span>
+                        El presente Política de Privacidad establece los términos en que  usa y protege la información que es proporcionada por sus usuarios al momento de utilizar su sitio web. Esta compañía está comprometida con la seguridad de los datos de sus usuarios. Cuando le pedimos llenar los campos de información personal con la cual usted pueda ser identificado, lo hacemos asegurando que sólo se empleará de acuerdo con los términos de este documento. Sin embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo que le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que está de acuerdo con dichos cambios.
+                        </span>
+                        <h2>Información que es recogida</h2>
+                        <span>
+                        Nuestro sitio web podrá recoger información personal por ejemplo: Nombre,  información de contacto como  su dirección de correo electrónica e información demográfica. Así mismo cuando sea necesario podrá ser requerida información específica para procesar algún pedido o realizar una entrega o facturación.
+                        </span>
                     </div>
 
                 </div>
@@ -418,7 +443,7 @@
                         </div>
                         <div class="col-md-3 col-sm-8 templatemo_servicetxt">
                             <h2>Conflicto armado</h2>
-                            <p>Polygon is free HTML5 template by <span class="blue">template</span><span class="green">mo</span> that can be used for any purpose. You can remove any credit link. Please tell your friends about our website. Credit goes to <a rel="nofollow" href="http://unsplash.com">Unsplash</a> for images used in this template. Feel free to visit <a href="http://www.facebook.com/templatemo" target="_parent">templatemo Facebook page</a>.</p>
+                            <p>Lea dinamicamente la historia del conflicto armado en Colombia, enterece de cada suceso por medio de graficos que lo ubicaran en cada region del paisque fue afectada por dicho conflicto</p>
                         </div>
 
 
@@ -435,7 +460,7 @@
                             </div>
                             <div class="col-md-3 col-sm-8 templatemo_servicetxt">
                                 <h2>Epocas del conflicto</h2>
-                                <p>This is free mobile template which is compatible with tablets and mobile phones. Mauris eget neque at sapien faucibus egestas vel vitae mi. Maecenas commodo augue risus, sed placerat neque feugiat vel. Fusce augue urna, faucibus et nulla bibendum, luctus porttitor nulla.</p>
+                                <p>la guerra que vivio es igual a la guerra de sus padres?. ubiquese en cada epoca y/o etapa del conflicto </p>
                             </div>
                         </div>
                     </div>
@@ -487,8 +512,9 @@
     <div class="templatemo_footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-9 col-sm-12">
+                <div class="col-md-9 col-sm-12 main_menu">
                     <span>Copyright WarLife</span>
+                    <a class="show-4 templatemo_page4" href="#">Politica de datos </a>
                 </div>
                 <div class="col-md-3 col-sm-12 templatemo_rfooter">
                     <a href="#">
@@ -535,7 +561,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            $("btnRegistrar").click(function () {
+            $("#btnRegistrar").click(function () {
                 var user = document.getElementById("user").value;
                 var password = document.getElementById("clave").value;
 
@@ -545,31 +571,61 @@
                 var yyyy = today.getFullYear();
                 var today = dd + '/' + mm + '/' + yyyy;
 
-                var dateTime = today;
-                var error = 'Error al guardar en la base de datos';
-                var local = '../wsWarLife.asmx';
+                var error;
+                
 
                 $.ajax({
-                    type: "POST",
-                    url: '' + local + '/SetNewUser',
-                    data: "{'sUserName':" + user + ",'sPassword':" + password + ", 'dtCreationDate':" + dateTime + ", 'sResponseMessage':" + error + " }",
+                    type: 'POST',
+                    url: '/wsWarLife.asmx/SetNewUser',                    
+                    data: '{sUserName: ' + JSON.stringify(user) + ',sPassword: ' + JSON.stringify(password) + '}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (msg) {
                         var datos = msg.d;
                         alert('Registro')
-
                     },
-                    error: function (e) {
-                        alert("WebSerivce unreachable");
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(jqXHR, textStatus, errorThrown);
                     }
                 });
 
             });
         });
+
+
+        $(document).ready(function () {
+            $("#btnLogIn").click(function () {
+                var sUser = document.getElementById("loginUser").value;
+                var sPassword = document.getElementById("loginPassword").value;
+
+                var error;
+
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/wsWarLife.asmx/LogIn',
+                    data: '{sUserName: ' + JSON.stringify(sUser) + ',sPassword: ' + JSON.stringify(sPassword) + '}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (msg) {
+                        var datos = msg.d;
+                        alert('Login')
+                        window.location.href = "game/mapa.html";
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(jqXHR, textStatus, errorThrown);
+                    }
+                });
+
+            });
+        });
+
+
+
+
+
     </script>
 
 
 
 </body>
-</html>

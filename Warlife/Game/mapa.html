@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../res/ammap/ammap.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="../res/ammap/ammap.css" type="text/css" media="all" />
+</head>
+<body>
+	<script src="../res/ammap/maps/js/colombiaLow.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	var map = 	AmCharts.makeChart( "mapdiv", {
+ 
+  "type": "map",
+  "theme": "light",
+
+
+
+  "dataProvider": {
+    "map": "colombiaLow",
+    "getAreasFromMap": true,
+     areas: [ {
+      id: "CO-ANT",
+      color: "#F0B67F"
+    }, {
+      id: "CO-NAR",
+      color: "#F0B67F"
+    }, {
+      id: "CO-CAQ",
+      color: "#F0B67F"
+    }]
+  
+
+  },
+
+
+  "areasSettings": {
+    "autoZoom": true,
+    "color": "#99999c",
+    "colorSolid": "#2eb7ed",
+    "selectedColor": "#69c" 
+  },
+} );
+		map.addListener("clickMapObject", function(event) {
+  document.getElementById("info").innerHTML = 'Clicked ID: ' + event.mapObject.id + ' (' + event.mapObject.title + ')';
+  
+window.location.href = "Lugares/"+event.mapObject.id+".html";
+
+});
+	</script>
+	<div id="cont" style="background-image:url(../res/conflicto-col.jpg)  ;
+	 background-repeat: no-repeat;
+	  background-attachment: fixed;
+  background-size: cover;	
+  filter: blur(4px);
+	z-index: 0;
+	margin: auto;
+width: 90%;
+height: 800px;
+position: absolute;
+margin-left:5%;
+border:2px solid black;margin: auto;
+  "></div>
+	<div id="mapdiv" style="width: 90%;height: 800px; background:transparent; z-index:1;">
+	
+	
+	</div>
+	<div id="info">Click the country to display it's information</div>
+</body>
+</html>
